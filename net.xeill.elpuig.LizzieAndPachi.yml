@@ -24,15 +24,19 @@ modules:
       - unzip Lizzie.0.7.4.Mac-Linux.zip
       - cp Lizzie/lizzie.jar /app/lizzie.jar
       - mv LizzieAndPachi /app/LizzieAndPachi
+      - cp config.txt /app/config.txt
     sources:
       - type: file
         url: https://github.com/featurecat/lizzie/releases/download/0.7.4/Lizzie.0.7.4.Mac-Linux.zip
         sha256: 4dcaabb8525045684040d98ed54bad7c05acbfb13f0a38dc362558ff62b91bc7
-
       - type: script
         dest-filename: LizzieAndPachi
         commands:
+          - cp /app/config.txt ~/config.txt
           - /app/jre/bin/java -jar /app/lizzie.jar
+          
+      - type: file
+        path: config.txt
 
   - name: pachi
     buildsystem: simple
