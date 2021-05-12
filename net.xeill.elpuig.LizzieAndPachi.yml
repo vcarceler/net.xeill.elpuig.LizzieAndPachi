@@ -4,7 +4,6 @@ runtime-version: '20.08'
 sdk: org.freedesktop.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.openjdk11
-#command: /app/jre/bin/java -jar /app/lizzie.jar
 command: /app/LizzieAndPachi
 finish-args:
   - --socket=x11
@@ -12,6 +11,7 @@ finish-args:
   - --share=ipc
   - --device=dri
   - --socket=fallback-x11
+  - --env=PATH=/app/jre/bin:/usr/bin
 modules:
   - name: openjdk
     buildsystem: simple
@@ -34,7 +34,6 @@ modules:
         commands:
           - cp /app/config.txt ~/config.txt
           - /app/jre/bin/java -jar /app/lizzie.jar
-          
       - type: file
         path: config.txt
 
@@ -47,8 +46,3 @@ modules:
       - type: file
         url: https://github.com/pasky/pachi/releases/download/pachi-12.60/pachi-12.60-linux-static.zip
         sha256: 8c7d47ebc922c2aef335f525dde385b0b5821d1f8c666075f18a412ef8a32dac
-
-  - name:
-
-finish-args:
-  - --env=PATH=/app/jre/bin:/usr/bin
